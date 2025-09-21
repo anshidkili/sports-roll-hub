@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# Sports Roll Hub
 
-## Project info
+A comprehensive sports registration management system built with modern web technologies.
 
-**URL**: https://lovable.dev/projects/91c6be21-da55-436b-9b8d-70d8a2edc5a7
+## Project Overview
 
-## How can I edit this code?
+Sports Roll Hub is a web application designed to manage sports registrations, student information, and activity tracking for educational institutions.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- Student registration and management
+- Sports event creation and management
+- Registration tracking and statistics
+- PDF generation for reports
+- Activity logging
+- User authentication and authorization
+- Responsive design with modern UI
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/91c6be21-da55-436b-9b8d-70d8a2edc5a7) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## Technologies Used
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Vite** - Fast build tool and development server
+- **TypeScript** - Type-safe JavaScript
+- **React** - Modern UI library
+- **shadcn/ui** - Beautiful and accessible UI components
+- **Tailwind CSS** - Utility-first CSS framework
+- **Supabase** - Backend-as-a-Service for database and authentication
+- **React Router** - Client-side routing
+- **React Hook Form** - Form handling
+- **Zod** - Schema validation
 
-## How can I deploy this project?
+## Getting Started
 
-Simply open [Lovable](https://lovable.dev/projects/91c6be21-da55-436b-9b8d-70d8a2edc5a7) and click on Share -> Publish.
+### Prerequisites
 
-## Can I connect a custom domain to my Lovable project?
+- Node.js (version 18 or higher)
+- npm or yarn package manager
 
-Yes, you can!
+### Installation
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Clone the repository:
+```bash
+git clone <YOUR_GIT_URL>
+cd sports-roll-hub
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+Create a `.env.local` file in the root directory and add your Supabase configuration:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:8080`.
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build for development
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── forms/          # Form components
+│   ├── layout/         # Layout components
+│   └── ui/             # Base UI components
+├── contexts/           # React contexts
+├── hooks/              # Custom React hooks
+├── integrations/       # External service integrations
+├── lib/                # Utility libraries
+├── pages/              # Page components
+└── utils/              # Utility functions
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test your changes
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
