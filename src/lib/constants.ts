@@ -7,10 +7,10 @@ export const USER_ROLES = {
 } as const;
 
 export const ACADEMIC_YEARS = {
-  FIRST: 'first',
-  SECOND: 'second',
-  THIRD: 'third',
-  FOURTH: 'fourth'
+  first: 'First Year',
+  second: 'Second Year',
+  third: 'Third Year',
+  fourth: 'Fourth Year'
 } as const;
 
 export const SPORT_TYPES = {
@@ -42,16 +42,5 @@ export const getRoleLabel = (role: string) => {
 };
 
 export const getYearLabel = (year: string) => {
-  switch (year) {
-    case ACADEMIC_YEARS.FIRST:
-      return 'First Year';
-    case ACADEMIC_YEARS.SECOND:
-      return 'Second Year';
-    case ACADEMIC_YEARS.THIRD:
-      return 'Third Year';
-    case ACADEMIC_YEARS.FOURTH:
-      return 'Fourth Year';
-    default:
-      return year;
-  }
+  return ACADEMIC_YEARS[year as keyof typeof ACADEMIC_YEARS] || year;
 };

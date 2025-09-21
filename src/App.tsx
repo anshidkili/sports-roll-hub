@@ -11,6 +11,9 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
 import Sports from "./pages/Sports";
+import Registrations from "./pages/Registrations";
+import ActivityLogs from "./pages/ActivityLogs";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,9 +37,9 @@ const App = () => (
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/students" element={<Students />} />
                 <Route path="/sports" element={<Sports />} />
-                <Route path="/registrations" element={<Dashboard />} />
-                <Route path="/activity-logs" element={<Dashboard />} />
-                <Route path="/settings" element={<Dashboard />} />
+                <Route path="/registrations" element={<Registrations />} />
+                <Route path="/activity-logs" element={<ActivityLogs />} />
+                <Route path="/settings" element={<Settings />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

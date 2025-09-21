@@ -151,32 +151,6 @@ export default function Dashboard() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Common tasks and operations</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {profile?.role === USER_ROLES.ADMIN ? (
-                <>
-                  <p className="text-sm">• Create new sports events</p>
-                  <p className="text-sm">• Manage student registrations</p>
-                  <p className="text-sm">• View activity logs</p>
-                  <p className="text-sm">• Configure registration limits</p>
-                </>
-              ) : (
-                <>
-                  <p className="text-sm">• Register students for sports</p>
-                  <p className="text-sm">• View your year's students</p>
-                  <p className="text-sm">• Download participation lists</p>
-                  <p className="text-sm">• Track registration status</p>
-                </>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
             <CardTitle>System Status</CardTitle>
             <CardDescription>Current system information</CardDescription>
           </CardHeader>
