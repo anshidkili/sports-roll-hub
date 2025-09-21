@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import { logUserLogin, logUserLogout } from '@/utils/activityLogger';
 
 interface Profile {
   id: string;
@@ -36,7 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchProfile = async (userId: string) => {
+  const fetchProfile = async (userId: string, shouldLogLogin: boolean = false) => {
     try {
       const { data, error } = await supabase
         .from('profiles')
@@ -46,6 +47,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (error) throw error;
       setProfile(data);
+      
+      // Only log user login activity if explicitly requested (on actual sign-in)
+      if (shouldLogLogin) {
+        await logUserLogin(data.id, {
+          login_method: 'email_password',
+          timestamp: new Date().toISOString()
+        });
+      }
     } catch (error) {
       console.error('Error fetching profile:', error);
       toast({
@@ -56,18 +65,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+
   useEffect(() => {
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      async (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
           setTimeout(() => {
-            fetchProfile(session.user.id);
+            // Only log login on actual sign-in events, not on page refresh
+            const shouldLogLogin = event === 'SIGNED_IN';
+            fetchProfile(session.user.id, shouldLogLogin);
           }, 0);
         } else {
+          // Handle logout event
+          if (event === 'SIGNED_OUT' && profile?.id) {
+            await logUserLogout(profile.id);
+          }
           setProfile(null);
         }
       }
@@ -78,7 +94,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        fetchProfile(session.user.id);
+        // Don't log login on initial session check (page refresh)
+        fetchProfile(session.user.id, false);
       }
       setLoading(false);
     });
@@ -125,6 +142,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signOut = async () => {
     try {
+      // Log logout activity before signing out
+      if (profile?.id) {
+        await logUserLogout(profile.id);
+      }
+      
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
       setUser(null);
