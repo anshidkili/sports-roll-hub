@@ -64,7 +64,7 @@ export function AppSidebar() {
               <Trophy className="h-7 w-7 sm:h-8 sm:w-8 text-primary-foreground" />
             </div>
             <div>
-              <h2 className="text-lg sm:text-xl font-semibold text-sidebar-foreground">Athlone</h2>
+              <h2 className="text-lg sm:text-xl font-semibold text-sidebar-foreground">Athlon</h2>
               <p className="text-sm sm:text-base text-sidebar-foreground/70">EKC Campus</p>
             </div>
           </div>
