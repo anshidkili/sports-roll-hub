@@ -222,7 +222,7 @@ export default function Auth() {
         </CardContent>
         <CardFooter className="text-center text-sm text-muted-foreground">
           <p className="w-full">
-            © 2025 Athlon EKC Campus. All rights reserved.
+            © 2025 Athlone EKC Campus. All rights reserved.
           </p>
         </CardFooter>
       </Card>
